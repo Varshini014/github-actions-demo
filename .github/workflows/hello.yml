@@ -1,10 +1,19 @@
-name: First code 
+name: Python Workflow Test
+
 on: push
+
 jobs:
-  test-job:
+  python-test:
     runs-on: ubuntu-latest
 
-
     steps:
-      - name: say hello
-        run: echo "Github Actions local setup success"
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Run Python file
+        run: python test.py
